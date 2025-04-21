@@ -14,7 +14,8 @@ const LandingPage = () => {
         <div className="button-group">
             <button onClick={() => navigate('/login')} className="btn">Login</button>
             <button onClick={() => navigate('/register')} className="btn">Register</button>
-            <button onClick={() => navigate('/home')} className="btn">Play Games</button>
+            <button onClick={() => navigate('/home' )} className="btn">Play Games</button>
+          
         </div>
     </div>
   );

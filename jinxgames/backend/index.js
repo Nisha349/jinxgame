@@ -19,47 +19,47 @@ app.use(express.urlencoded({ extended: true }));
 // Routes for users (Sequelize)
 app.use('/api/user', routes);
 
-// Ensure scores.json exists
-if (!fs.existsSync(SCORE_FILE)) {
-  fs.writeFileSync(SCORE_FILE, '[]');
-}
+// // Ensure scores.json exists
+// if (!fs.existsSync(SCORE_FILE)) {
+//   fs.writeFileSync(SCORE_FILE, '[]');
+// }
 
-// GET: Fetch all scores
-app.get('/scores', (req, res) => {
-  try {
-    const data = fs.readFileSync(SCORE_FILE);
-    res.json(JSON.parse(data));
-  } catch (err) {
-    console.error("Failed to read scores:", err);
-    res.status(500).json({ error: 'Failed to read scores.' });
-  }
-});
+// // GET: Fetch all scores
+// app.get('/scores', (req, res) => {
+//   try {
+//     const data = fs.readFileSync(SCORE_FILE);
+//     res.json(JSON.parse(data));
+//   } catch (err) {
+//     console.error("Failed to read scores:", err);
+//     res.status(500).json({ error: 'Failed to read scores.' });
+//   }
+// });
 
-// POST: Save a new game result
-app.post('/scores', (req, res) => {
-  try {
-    const newScore = req.body;
-    const data = fs.readFileSync(SCORE_FILE);
-    const scores = JSON.parse(data);
-    scores.push(newScore);
-    fs.writeFileSync(SCORE_FILE, JSON.stringify(scores, null, 2));
-    res.status(201).json({ message: 'Score saved successfully!' });
-  } catch (err) {
-    console.error("Failed to save score:", err);
-    res.status(500).json({ error: 'Failed to save score.' });
-  }
-});
+// // POST: Save a new game result
+// app.post('/scores', (req, res) => {
+//   try {
+//     const newScore = req.body;
+//     const data = fs.readFileSync(SCORE_FILE);
+//     const scores = JSON.parse(data);
+//     scores.push(newScore);
+//     fs.writeFileSync(SCORE_FILE, JSON.stringify(scores, null, 2));
+//     res.status(201).json({ message: 'Score saved successfully!' });
+//   } catch (err) {
+//     console.error("Failed to save score:", err);
+//     res.status(500).json({ error: 'Failed to save score.' });
+//   }
+// });
 
-// DELETE: Clear all game history
-app.delete('/scores', (req, res) => {
-  try {
-    fs.writeFileSync(SCORE_FILE, '[]');
-    res.status(200).json({ message: 'All scores cleared' });
-  } catch (err) {
-    console.error("Failed to clear scores:", err);
-    res.status(500).json({ error: 'Failed to delete scores.' });
-  }
-});
+// // DELETE: Clear all game history
+// app.delete('/scores', (req, res) => {
+//   try {
+//     fs.writeFileSync(SCORE_FILE, '[]');
+//     res.status(200).json({ message: 'All scores cleared' });
+//   } catch (err) {
+//     console.error("Failed to clear scores:", err);
+//     res.status(500).json({ error: 'Failed to delete scores.' });
+//   }
+// });
 
 // Start server after DB sync
 sequelize.sync({ logging: console.log })

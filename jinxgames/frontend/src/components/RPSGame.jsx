@@ -42,24 +42,24 @@ const RPSGame = () => {
       time: new Date().toLocaleString()
     };
 
-    try {
-      await axios.post('http://localhost:3000/scores', newEntry);
-      setHistory(prev => [...prev, newEntry]);
-    } catch (err) {
-      console.error("Error saving score:", err);
-      alert("Failed to save game result.");
-    }
+    // try {
+    //   await axios.post('http://localhost:3000/scores', newEntry);
+    //   setHistory(prev => [...prev, newEntry]);
+    // } catch (err) {
+    //   console.error("Error saving score:", err);
+    //   alert("Failed to save game result.");
+    // }
   };
 
-  const clearHistory = async () => {
-    try {
-      await axios.delete('http://localhost:3000/scores');
-      setHistory([]);
-    } catch (err) {
-      console.error("Error deleting history:", err);
-      alert("Failed to delete history.");
-    }
-  };
+  // const clearHistory = async () => {
+  //   try {
+  //     await axios.delete('http://localhost:3000/scores');
+  //     setHistory([]);
+  //   } catch (err) {
+  //     console.error("Error deleting history:", err);
+  //     alert("Failed to delete history.");
+  //   }
+  // };
 
   return (
     <>
@@ -79,7 +79,7 @@ const RPSGame = () => {
           <div className="rps-result">{result}</div>
         </div>
 
-        <div className="rps-history" style={{ marginTop: '30px' }}>
+        {/* <div className="rps-history" style={{ marginTop: '30px' }}>
           <h4>Game History</h4>
           {history.length > 0 ? (
             <>
@@ -97,7 +97,7 @@ const RPSGame = () => {
           ) : (
             <p>No game history yet.</p>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );
